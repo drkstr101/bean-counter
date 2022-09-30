@@ -1,0 +1,35 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "demo",
+  "projectType": "application",
+  "sourceRoot": "apps/demo/src",
+  "targets": {
+    "build": {
+      "outputs": [
+        "dist/apps/demo"
+      ],
+      "executor": "@nxtensions/astro:build",
+      "options": {}
+    },
+    "serve": {
+      "executor": "@nxtensions/astro:dev",
+      "options": {
+        "port": 4200
+      }
+    },
+    "preview": {
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ],
+      "executor": "@nxtensions/astro:preview",
+      "options": {}
+    },
+    "check": {
+      "executor": "@nxtensions/astro:check"
+    }
+  },
+  "tags": []
+}

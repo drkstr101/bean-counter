@@ -2,3 +2,7 @@
 
 /dist
 /coverage
+/.yarn
+/node_modules
+/apps/*/.serverless
+/apps/*/.webpack
