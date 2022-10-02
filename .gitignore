@@ -17,6 +17,8 @@ node_modules
 .settings/
 *.sublime-workspace
 
+.env
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
@@ -38,7 +40,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Yarn 
+# Yarn
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -46,3 +48,7 @@ Thumbs.db
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Serverless
+.serverless
+.webpack

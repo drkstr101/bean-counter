@@ -1,0 +1,79 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "greeting-service",
+  "projectType": "application",
+  "sourceRoot": "apps/greeting-service/src",
+  "targets": {
+    "serve": {
+      "executor": "@ns3/nx-serverless:sls",
+      "options": {
+        "command": "offline"
+      }
+    },
+    "build": {
+      "executor": "@ns3/nx-serverless:sls",
+      "outputs": [
+        "apps/greeting-service/.serverless",
+        "dist/apps/greeting-service"
+      ],
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "dependencies"
+        }
+      ],
+      "options": {
+        "command": "package"
+      }
+    },
+    "deploy": {
+      "executor": "@ns3/nx-serverless:sls",
+      "outputs": [
+        "apps/greeting-service/.serverless",
+        "dist/apps/greeting-service"
+      ],
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ],
+      "options": {
+        "command": "deploy",
+        "package": ".serverless"
+      }
+    },
+    "remove": {
+      "executor": "@ns3/nx-serverless:sls",
+      "options": {
+        "command": "remove"
+      }
+    },
+    "sls": {
+      "executor": "@ns3/nx-serverless:sls",
+      "options": {}
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/apps/greeting-service"
+      ],
+      "options": {
+        "jestConfig": "apps/greeting-service/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "apps/greeting-service/src/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
